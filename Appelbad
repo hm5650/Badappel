@@ -1,0 +1,377 @@
+--bad apple yey :D
+--original layout iz made by hecker, me gpssickle modified it cuz yes :7
+--and dis is were I found it: https://www.mzscripts.com/scripts/bad-apple-ascii-edition-612
+--go support hecker :]
+
+local gui = {}
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local TweenService = game:GetService("TweenService")
+local Workspace = game:GetService("Workspace")
+local ContentProvider = game:GetService("ContentProvider")
+local SoundService = game:GetService("SoundService")
+local LocalPlayer = Players.LocalPlayer
+local PlayerGui = LocalPlayer:WaitForChild("PlayerGui")
+local Camera = Workspace.CurrentCamera
+local d = "rbxassetid://1353726921"
+local y = "rbxassetid://8447388510"
+local idk = {
+	"rbxassetid://72298953503422",
+	"rbxassetid://17608357332",
+   "rbxassetid://130776885039264",
+   "rbxassetid://6303045144",
+   "rbxassetid://101513669346450",
+   "rbxassetid://17748195478",
+   "rbxassetid://17517499979",
+}
+task.spawn(function()
+	local preloadAssets = {}
+	local tempImg = Instance.new("ImageLabel")
+	tempImg.Image = d
+	tempImg.Visible = false
+	tempImg.Parent = PlayerGui
+	local tempSnd = Instance.new("Sound")
+	tempSnd.SoundId = y
+	tempSnd.Parent = SoundService
+	table.insert(preloadAssets, tempImg)
+	table.insert(preloadAssets, tempSnd)
+	pcall(function()
+		ContentProvider:PreloadAsync(preloadAssets)
+	end)
+	tempImg:Destroy()
+	tempSnd:Destroy()
+end)
+local floatingPart = Instance.new("Part")
+floatingPart.Name = "BadAppleBillboardPart"
+floatingPart.Size = Vector3.new(1, 1, 1)
+floatingPart.Transparency = 1
+floatingPart.CanCollide = false
+floatingPart.Anchored = true
+floatingPart.Parent = Workspace
+floatingPart.CFrame = Camera.CFrame * CFrame.new(0, 0, -10)
+local billboard = Instance.new("BillboardGui")
+billboard.Name = "BadAppleBillboard"
+billboard.AlwaysOnTop = true
+billboard.Size = UDim2.new(15, 0, 11, 0)
+billboard.ResetOnSpawn = false
+billboard.Parent = floatingPart
+gui["ScreenGui_1"] = billboard
+gui["Frame_2"] = Instance.new("Frame", billboard)
+gui["Frame_2"]["BorderSizePixel"] = 0
+gui["Frame_2"]["BackgroundColor3"] = Color3.fromRGB(50, 50, 50)
+gui["Frame_2"]["Size"] = UDim2.new(1, 0, 1, 0)
+gui["Frame_2"]["Position"] = UDim2.new(0.5, 0, 0.5, 0)
+gui["Frame_2"]["AnchorPoint"] = Vector2.new(0.5, 0.5)
+gui["Frame_2"]["BackgroundTransparency"] = 1
+gui["Frame_2"]["ClipsDescendants"] = true
+local uiCorner = Instance.new("UICorner")
+uiCorner.CornerRadius = UDim.new(0, 8)
+uiCorner.Parent = gui["Frame_2"]
+local uiStroke = Instance.new("UIStroke")
+uiStroke.Thickness = 1
+uiStroke.Transparency = 1
+uiStroke.Color = Color3.fromRGB(255, 255, 255)
+uiStroke.Parent = gui["Frame_2"]
+local uiGradient = Instance.new("UIGradient")
+uiGradient.Color = ColorSequence.new({
+	ColorSequenceKeypoint.new(0, Color3.fromRGB(255, 255, 255)),
+	ColorSequenceKeypoint.new(1, Color3.fromRGB(0, 0, 0))
+})
+uiGradient.Rotation = 0
+uiGradient.Parent = gui["Frame_2"]
+gui["TextLabel_4"] = Instance.new("TextLabel", gui["Frame_2"])
+gui["TextLabel_4"]["TextWrapped"] = true
+gui["TextLabel_4"]["BorderSizePixel"] = 0
+gui["TextLabel_4"]["TextScaled"] = true
+gui["TextLabel_4"]["BackgroundColor3"] = Color3.fromRGB(255, 255, 255)
+gui["TextLabel_4"]["BackgroundTransparency"] = 1
+gui["TextLabel_4"]["Size"] = UDim2.new(0.6, 0, 0.08, 0)
+gui["TextLabel_4"]["Text"] = "Initializing..."
+gui["TextLabel_4"]["Position"] = UDim2.new(0.01, 0, 0.91, 0)
+gui["TextLabel_4"]["TextColor3"] = Color3.fromRGB(255, 255, 255)
+gui["TextLabel_4"]["TextTransparency"] = 1
+gui["TextLabel_4"]["ZIndex"] = 2
+gui["TextLabel_4"]["TextXAlignment"] = Enum.TextXAlignment.Left
+gui["UIAspectRatioConstraint_6"] = Instance.new("UIAspectRatioConstraint", gui["Frame_2"])
+gui["UIAspectRatioConstraint_6"]["AspectRatio"] = 1.33
+gui["AsciiDisplay"] = Instance.new("TextLabel", gui["Frame_2"])
+gui["AsciiDisplay"]["Name"] = "AsciiDisplay"
+gui["AsciiDisplay"]["Size"] = UDim2.new(1, 0, 1, 0)
+gui["AsciiDisplay"]["Position"] = UDim2.new(0, 0, 0, 0)
+gui["AsciiDisplay"]["BackgroundColor3"] = Color3.fromRGB(0, 0, 0)
+gui["AsciiDisplay"]["BackgroundTransparency"] = 1
+gui["AsciiDisplay"]["TextColor3"] = Color3.fromRGB(255, 255, 255)
+gui["AsciiDisplay"]["TextTransparency"] = 1
+gui["AsciiDisplay"]["Font"] = Enum.Font.Code
+gui["AsciiDisplay"]["TextSize"] = 7
+gui["AsciiDisplay"]["TextWrapped"] = false
+gui["AsciiDisplay"]["TextXAlignment"] = Enum.TextXAlignment.Left
+gui["AsciiDisplay"]["TextYAlignment"] = Enum.TextYAlignment.Top
+gui["AsciiDisplay"]["Text"] = " "
+local ControlScreenGui = Instance.new("ScreenGui")
+ControlScreenGui.Name = "BadAppleControlPanel"
+ControlScreenGui.ResetOnSpawn = false
+ControlScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ControlScreenGui.Parent = PlayerGui
+local DestroyButton = Instance.new("ImageButton")
+DestroyButton.Name = "DestroyButton"
+DestroyButton.Size = UDim2.new(0, 160, 0, 50)
+DestroyButton.Position = UDim2.new(0.95, -160, 0.05, 0)
+DestroyButton.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+DestroyButton.BackgroundTransparency = 0.3
+DestroyButton.BorderSizePixel = 0
+DestroyButton.Image = d
+DestroyButton.ImageTransparency = 0.5
+DestroyButton.ScaleType = Enum.ScaleType.Crop
+DestroyButton.ClipsDescendants = true
+DestroyButton.ImageColor3 = Color3.fromRGB(255, 100, 100)
+DestroyButton.Parent = ControlScreenGui
+local btnCorner = Instance.new("UICorner")
+btnCorner.CornerRadius = UDim.new(0, 10)
+btnCorner.Parent = DestroyButton
+local btnStroke = Instance.new("UIStroke")
+btnStroke.Thickness = 2
+btnStroke.Color = Color3.fromRGB(255, 65, 65)
+btnStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+btnStroke.Transparency = 0.4
+btnStroke.Parent = DestroyButton
+local btnText = Instance.new("TextLabel")
+btnText.Size = UDim2.new(1, 0, 1, 0)
+btnText.BackgroundTransparency = 1
+btnText.Text = "evil apple\ngoes bye-bye >:)"
+btnText.Font = Enum.Font.SourceSansBold
+btnText.TextSize = 18
+btnText.TextColor3 = Color3.fromRGB(255, 230, 230)
+btnText.TextStrokeTransparency = 0.5
+btnText.ZIndex = 2
+btnText.Parent = DestroyButton
+DestroyButton.MouseEnter:Connect(function()
+	TweenService:Create(DestroyButton, TweenInfo.new(0.2), {BackgroundTransparency = 0.1, ImageTransparency = 0.7}):Play()
+	TweenService:Create(btnStroke, TweenInfo.new(0.2), {Color = Color3.fromRGB(255, 0, 0), Thickness = 3}):Play()
+end)
+DestroyButton.MouseLeave:Connect(function()
+	TweenService:Create(DestroyButton, TweenInfo.new(0.2), {BackgroundTransparency = 0.3, ImageTransparency = 0.5}):Play()
+	TweenService:Create(btnStroke, TweenInfo.new(0.2), {Color = Color3.fromRGB(255, 65, 65), Thickness = 2}):Play()
+end)
+local OverlaysGui = Instance.new("ScreenGui")
+OverlaysGui.Name = "MemeVisualOverlays"
+OverlaysGui.ResetOnSpawn = false
+OverlaysGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+OverlaysGui.Parent = PlayerGui
+local ScreenFlash = Instance.new("Frame")
+ScreenFlash.Name = "Flash"
+ScreenFlash.Size = UDim2.new(1, 0, 1, 0)
+ScreenFlash.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+ScreenFlash.BackgroundTransparency = 1
+ScreenFlash.Visible = false
+ScreenFlash.ZIndex = 9
+ScreenFlash.Parent = OverlaysGui
+local ExplosionOverlay = Instance.new("ImageLabel")
+ExplosionOverlay.Name = "ExplosionOverlay"
+ExplosionOverlay.Size = UDim2.new(0, 600, 0, 600)
+ExplosionOverlay.Position = UDim2.new(0.5, 0, 0.5, 0)
+ExplosionOverlay.AnchorPoint = Vector2.new(0.5, 0.5)
+ExplosionOverlay.BackgroundTransparency = 1
+ExplosionOverlay.Image = d
+ExplosionOverlay.ImageTransparency = 1
+ExplosionOverlay.Visible = false
+ExplosionOverlay.ZIndex = 10
+ExplosionOverlay.Parent = OverlaysGui
+local TWEEN_TIME = 0.25
+local tweenInfo = TweenInfo.new(TWEEN_TIME, Enum.EasingStyle.Cubic, Enum.EasingDirection.Out)
+local cameraConnection
+cameraConnection = RunService.RenderStepped:Connect(function()
+	if not floatingPart or not floatingPart.Parent then
+		if cameraConnection then cameraConnection:Disconnect() end
+		return
+	end
+	local targetCFrame = Camera.CFrame * CFrame.new(0, 0, -10)
+	local tween = TweenService:Create(floatingPart, tweenInfo, {CFrame = targetCFrame})
+	tween:Play()
+end)
+local function executeFadeInAnimation()
+	local introInfo = TweenInfo.new(1.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+	TweenService:Create(gui["Frame_2"], introInfo, {BackgroundTransparency = 0.25}):Play()
+	TweenService:Create(uiStroke, introInfo, {Transparency = 0.5}):Play()
+	TweenService:Create(gui["TextLabel_4"], introInfo, {TextTransparency = 0}):Play()
+	TweenService:Create(gui["AsciiDisplay"], introInfo, {TextTransparency = 0}):Play()
+end
+local function getContentFetcher()
+	if syn and syn.request then return syn.request end
+	if http and http.request then return http.request end
+	if http_request then return http_request end
+	if fluxus and fluxus.request then return fluxus.request end
+	if request then return request end
+	return nil
+end
+local function start()
+	pcall(function()
+		game:GetService("StarterGui"):SetCore("SendNotification", {
+			Title = "good apple when?",
+			Text = "belh",
+			Duration = 3
+		})
+	end)
+	local running = true
+	local music = nil
+	task.spawn(executeFadeInAnimation)
+	local function performUltimateDestruction()
+		if not running then return end
+		running = false
+		if music then
+			music:Stop()
+			music:Destroy()
+			music = nil
+		end
+		if cameraConnection then cameraConnection:Disconnect() end
+		if ControlScreenGui then ControlScreenGui:Destroy() end
+		if floatingPart then floatingPart:Destroy() end
+		task.spawn(function()
+			if #idk > 0 then
+				local selectedId = idk[math.random(1, #idk)]
+				local memeSound = Instance.new("Sound")
+				memeSound.SoundId = selectedId
+				memeSound.Volume = 0.8
+				memeSound.Parent = SoundService
+				memeSound:Play()
+				memeSound.Ended:Connect(function()
+					memeSound:Destroy()
+				end)
+			end
+		end)
+		local detraBoom = Instance.new("Sound")
+		detraBoom.SoundId = y
+		detraBoom.Volume = 1
+		detraBoom.Parent = SoundService
+		detraBoom:Play()
+		task.spawn(function()
+			detraBoom.Ended:Connect(function()
+				detraBoom:Destroy()
+			end)
+		end)
+		ScreenFlash.Visible = true
+		ScreenFlash.BackgroundTransparency = 0
+		ExplosionOverlay.Visible = true
+		ExplosionOverlay.ImageTransparency = 0.5
+		ExplosionOverlay.Size = UDim2.new(0, 200, 0, 200)
+		local flashTween = TweenService:Create(ScreenFlash, TweenInfo.new(0.8, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {BackgroundTransparency = 1})
+		local boomTween = TweenService:Create(ExplosionOverlay, TweenInfo.new(0.6, Enum.EasingStyle.Back, Enum.EasingDirection.Out), {
+			Size = UDim2.new(0, 850, 0, 850),
+			ImageTransparency = 0.2
+		})
+		flashTween:Play()
+		boomTween:Play()
+		task.wait(0.6)
+		local fadeOutBoom = TweenService:Create(ExplosionOverlay, TweenInfo.new(0.4, Enum.EasingStyle.Quad, Enum.EasingDirection.In), {
+			ImageTransparency = 1,
+			Size = UDim2.new(0, 1200, 0, 1200)
+		})
+		fadeOutBoom:Play()
+		task.wait(0.5)
+		if OverlaysGui then
+			OverlaysGui:Destroy()
+		end
+	end
+	DestroyButton.MouseButton1Click:Connect(performUltimateDestruction)
+	billboard.Destroying:Connect(function()
+		if running then
+			performUltimateDestruction()
+		end
+	end)
+	local grabContent = getContentFetcher()
+	if not grabContent or not writefile or not getcustomasset then
+		gui["TextLabel_4"].Text = "Unsupported executor"
+		return
+	end
+	local statusText = gui["TextLabel_4"]
+	local screen = gui["AsciiDisplay"]
+	local CHUNK_SOURCE = "https://raw.githubusercontent.com/MINEOGO/bad-apple-ascii/main/chunks/chunk_%d.txt"
+	local MUSIC_SOURCE = "https://github.com/MINEOGO/bad-apple-ascii/raw/refs/heads/main/Bad%20Apple__%20.mp3"
+	local MUSIC_FILE = "bad_apple_audio.mp3"
+	local DELIMITER = "[FRAME_BREAK]"
+	local FRAME_COUNT = 6571
+	local CHUNK_SIZE = 100
+	local TOTAL_CHUNKS = math.ceil(FRAME_COUNT / CHUNK_SIZE)
+	local FPS_TARGET = 40
+	local FRAME_DELAY = 1 / FPS_TARGET
+	local thisChunk = nil
+	local nextChunk = nil
+	local musicID = nil
+	local chunkNum = 0
+	local function grabChunk(chunkIndex)
+		local url = string.format(CHUNK_SOURCE, chunkIndex)
+		local success, response = pcall(grabContent, { Url = url, Method = "GET" })
+		if success and response and response.StatusCode == 200 then
+			return string.split(response.Body or response.body or "", DELIMITER)
+		end
+		return nil
+	end
+	task.spawn(function()
+		statusText.Text = "Downloading assets..."
+		task.spawn(function()
+			local success, response = pcall(grabContent, { Url = MUSIC_SOURCE, Method = "GET" })
+			if success and response and response.StatusCode == 200 then
+				writefile(MUSIC_FILE, response.Body or response.body)
+				musicID = getcustomasset(MUSIC_FILE)
+			end
+		end)
+		thisChunk = grabChunk(1)
+		while (not thisChunk or not musicID) and running do
+			statusText.Text = string.format("Loading... (Audio: %s | Video: %s)",
+				musicID and "OK" or "...",
+				thisChunk and "OK" or "...")
+			task.wait(0.1)
+		end
+		if not running then return end
+		if not thisChunk or not musicID then
+			statusText.Text = "Asset download failed."
+			return
+		end
+		chunkNum = 1
+		music = Instance.new("Sound")
+		music.SoundId = musicID
+		music.Parent = SoundService
+		music:Play()
+		task.spawn(function()
+			if chunkNum < TOTAL_CHUNKS then
+				nextChunk = grabChunk(chunkNum + 1)
+			end
+		end)
+		for i = 1, FRAME_COUNT do
+			if not running then break end
+			local startTime = tick()
+			local expectedChunk = math.ceil(i / CHUNK_SIZE)
+			if expectedChunk > chunkNum then
+				while not nextChunk and running do
+					statusText.Text = "Waiting for next chunk..."
+					task.wait()
+				end
+				if not nextChunk then break end
+				thisChunk = nextChunk
+				nextChunk = nil
+				chunkNum = expectedChunk
+				if chunkNum < TOTAL_CHUNKS then
+					task.spawn(function()
+						nextChunk = grabChunk(chunkNum + 1)
+					end)
+				end
+			end
+			local indexInChunk = i - ((chunkNum - 1) * CHUNK_SIZE)
+			if thisChunk and thisChunk[indexInChunk] then
+				screen.Text = thisChunk[indexInChunk]
+			end
+			local currentFps = 1 / (tick() - startTime)
+			statusText.Text = string.format("Playing: %d/%d | FPS: %.0f", i, FRAME_COUNT, currentFps)
+			local elapsedTime = tick() - startTime
+			local timeToWait = FRAME_DELAY - elapsedTime
+			if timeToWait > 0 then
+				task.wait(timeToWait)
+			end
+		end
+		if running then
+			statusText.Text = "Finished."
+		end
+	end)
+end
+start()
+return billboard, require
